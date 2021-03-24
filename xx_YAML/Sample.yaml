@@ -1,0 +1,19 @@
+name: microservice
+registry: hogehoge
+services:
+- name: backend
+  project: fugafuga
+- name: frontend
+  project: nobinobi
+  env:
+  - name: YOUR_NAME
+    value: test
+- name: redis
+  image: redis
+  bindings:
+  - port: 6379
+    connectionString: "${host}:${port}"
+- name: redis-cli
+  image: redis
+  args: "redis-cli -h redis MONITOR"
+

@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xsd:schema targetNamespace="http://sample.com/test" xmlns:fl="http://sample.com/test"
+	xmlns:xsd="http://www.w3.org/2001/XMLSchema" version="1.0">
+
+	<xsd:element name="flows">
+		<xsd:complexType>
+			<xsd:sequence>
+				<xsd:element ref="fl:flow" maxOccurs="unbounded" />
+			</xsd:sequence>
+		</xsd:complexType>
+	</xsd:element>
+
+	<xsd:element name="flow">
+		<xsd:complexType>
+			<xsd:sequence>
+				<xsd:element ref="fl:select" minOccurs="0" maxOccurs="unbounded" />
+			</xsd:sequence>
+			<xsd:attribute name="name" type="xsd:ID" use="required" />
+		</xsd:complexType>
+	</xsd:element>
+
+	<xsd:element name="select">
+		<xsd:complexType>
+			<xsd:sequence>
+				<xsd:element ref="fl:when" maxOccurs="unbounded" />
+			</xsd:sequence>
+		</xsd:complexType>
+	</xsd:element>
+
+	<xsd:element name="when">
+		<xsd:complexType>
+			<xsd:sequence>
+				<xsd:element ref="fl:expression" minOccurs="0" maxOccurs="1" />
+			</xsd:sequence>
+			<xsd:attribute name="expression" type="fl:expression" />
+		</xsd:complexType>
+	</xsd:element>
+
+	<xsd:element name="expression" type="fl:expression" />
+
+	<xsd:simpleType name="expression">
+		<xsd:restriction base="xsd:string">
+			<xsd:minLength value="1" />
+		</xsd:restriction>
+	</xsd:simpleType>
+
+</xsd:schema>
